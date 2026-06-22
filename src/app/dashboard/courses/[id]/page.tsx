@@ -14,7 +14,11 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ id: str
   const [activeTab, setActiveTab] = useState("overview");
   
   const [course, setCourse] = useState<Course | null>(null);
-  const [modules, setModules] = useState<(Module & { lessons: (Lesson & { completed: boolean, active: boolean, locked: boolean })[] })[]>([]);
+  
+  type ExtendedLesson = Lesson & { completed: boolean; active: boolean; locked: boolean };
+  type ExtendedModule = Omit<Module, 'lessons'> & { lessons: ExtendedLesson[] };
+  
+  const [modules, setModules] = useState<ExtendedModule[]>([]);
   
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
