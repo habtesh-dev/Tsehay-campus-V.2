@@ -116,8 +116,8 @@ export default function CoursePlayerPage({ params }: { params: Promise<{ id: str
   }, [user, courseId]);
 
   // Find active lesson
-  const currentModuleIndex = modules.findIndex(m => m.lessons.some(l => l.active));
-  const currentLessonIndex = currentModuleIndex !== -1 ? modules[currentModuleIndex].lessons.findIndex(l => l.active) : -1;
+  const currentModuleIndex = modules.findIndex(m => m.lessons.some((l: any) => l.active));
+  const currentLessonIndex = currentModuleIndex !== -1 ? modules[currentModuleIndex].lessons.findIndex((l: any) => l.active) : -1;
   const currentLesson = currentModuleIndex !== -1 ? modules[currentModuleIndex].lessons[currentLessonIndex] : null;
 
   const handleCompleteAndContinue = async () => {
